@@ -1,5 +1,4 @@
 return {
-  { "github/copilot.vim", name = "copilot", lazy = false, cmd = "Copilot" },
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {

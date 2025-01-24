@@ -13,3 +13,11 @@ requerimientos
 - [neovim](https://neovim.io/)
 - [powershell](https://apps.microsoft.com/detail/9mz1snwt0n5d?hl=en-us&gl=US)
 - [ripgrep](https://github.com/BurntSushi/ripgrep?tab=readme-ov-file#installation)
+
+# Ajustes para django
+
+instalar [django-stubs](https://github.com/typeddjango/django-stubs) de esa manera el lsp funciona y no da falsos errores
+
+```bash
+pip install 'django-stubs[compatible-mypy]'
+```

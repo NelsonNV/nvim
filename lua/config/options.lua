@@ -7,6 +7,10 @@ vim.o.relativenumber = true
 vim.o.mouse = "a"
 vim.o.encoding = "utf-8"
 vim.o.syntax = "on"
+
+-- Wrap visual
+vim.o.wrap = true
+vim.o.showbreak = "↪ "
 -- formato de archivos para evitar caracteres de salto de línea
 vim.opt.fileformats = { "unix", "dos" }
 -- Configuración personalizada para el título de la ventana

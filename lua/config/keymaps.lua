@@ -16,3 +16,12 @@ vim.keymap.set("n", "<leader>rm", ":RemoveCtrlM<CR>", { desc = "Elimina ^M o mue
 
 -- Mapear el comando CopyFileToClipboard
 vim.keymap.set("n", "<leader>cp", ":CopyFile<CR>", { desc = "Copiar archivo al portapapeles" })
+
+-- Invertir funcion por teclado corne
+
+vim.api.nvim_set_keymap("n", "{", "}", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "}", "{", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "[[", "]]", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "]]", "[[", { noremap = true, silent = true })
+

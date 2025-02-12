@@ -18,7 +18,6 @@ return {
     options = {
       -- stylua: ignore
       close_command = function(n) Snacks.bufdelete(n) end,
-      separator_style = "slant",
       -- stylua: ignore
       right_mouse_command = function(n)
         Snacks.bufdelete(n)

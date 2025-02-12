@@ -60,6 +60,25 @@ local function run_tests()
   open_terminal(command)
 end
 
+local function run_test_file()
+  local current_file = vim.fn.expand("%") -- Obtiene la ruta del archivo actual
+  local command
+
+  if is_django_project() then
+    -- Transformar la ruta del archivo en formato de módulo de Django
+    local module_path = current_file:gsub("/", ".") -- Reemplazar / con .
+    module_path = module_path:gsub(".py$", "") -- Eliminar la extensión .py
+    module_path = module_path:gsub("^%.+", "") -- Eliminar puntos iniciales (si los hay)
+
+    command = activate_venv() .. "python manage.py test " .. module_path
+  else
+    -- Para pytest, ejecutar los tests del archivo actual
+    command = activate_venv() .. "pytest " .. current_file
+  end
+
+  open_terminal(command)
+end
+
 local function run_code()
   stop_server() -- Detener el servidor si ya está en ejecución
   local command = is_django_project() and (activate_venv() .. "python manage.py runserver")
@@ -102,6 +121,12 @@ function M.open_menu()
       hl = "@conditional",
       cmd = run_tests,
       rtxt = "t",
+    },
+    {
+      name = "󰤑  Run Test File",
+      hl = "@conditional",
+      cmd = run_test_file,
+      rtxt = "f",
     },
     { name = "separator" },
     {

@@ -113,6 +113,11 @@ local function run_makemigrations()
   open_terminal(command)
 end
 
+local function run_create_superuser()
+  local command = activate_venv() .. "python manage.py createsuperuser"
+  open_terminal(command)
+end
+
 function M.open_menu()
   -- Diccionario base de opciones del menú
   local menu_items = {
@@ -164,6 +169,11 @@ function M.open_menu()
       name = "󰮆  Make Migrations",
       cmd = run_makemigrations,
       rtxt = "k",
+    })
+    table.insert(menu_items, {
+      name = "  Create SuperUser",
+      cmd = run_create_superuser,
+      rtxt = "c",
     })
   end
 

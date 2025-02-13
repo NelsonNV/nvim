@@ -135,7 +135,7 @@ function M.open_menu()
       rtxt = "r",
     },
     {
-      name = "🐛  Run Code (Debug)",
+      name = "󱏛  Run Code (Debug)",
       cmd = run_code_debug,
       rtxt = "d",
     },
@@ -145,23 +145,23 @@ function M.open_menu()
   if is_django_project() then
     table.insert(menu_items, { name = "separator" })
     table.insert(menu_items, {
-      name = "🐍  Django Shell",
+      name = "  Django Shell",
       cmd = open_django_shell,
       rtxt = "s",
     })
     table.insert(menu_items, {
-      name = "🐍  Django Shell Plus",
+      name = "  Django Shell Plus",
       cmd = open_django_shell_plus,
       rtxt = "p",
     })
     table.insert(menu_items, { name = "separator" })
     table.insert(menu_items, {
-      name = "🚀  Run Migrations",
+      name = "󰪩  Run Migrations",
       cmd = run_migrations,
       rtxt = "m",
     })
     table.insert(menu_items, {
-      name = "📝  Make Migrations",
+      name = "󰮆  Make Migrations",
       cmd = run_makemigrations,
       rtxt = "k",
     })

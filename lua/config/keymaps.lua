@@ -22,6 +22,9 @@ vim.keymap.set("n", "<leader>cp", ":CopyFile<CR>", { desc = "Copiar archivo al p
 vim.api.nvim_set_keymap("n", "{", "}", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "}", "{", { noremap = true, silent = true })
 
+vim.api.nvim_set_keymap("v", "{", "}", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "}", "{", { noremap = true, silent = true })
+
 vim.api.nvim_set_keymap("n", "[[", "]]", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "]]", "[[", { noremap = true, silent = true })
 

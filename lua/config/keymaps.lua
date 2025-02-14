@@ -39,7 +39,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function(event)
     local menu = menus[event.match]
     if menu then
-      vim.keymap.set("n", "<leader>m", function()
+      vim.keymap.set("n", "<C-m>", function()
         require(menu).open_menu()
       end, { buffer = true, desc = "Abrir menú de " .. event.match })
     end

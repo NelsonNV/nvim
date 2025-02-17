@@ -1,4 +1,5 @@
 -- config/menu/python.lua
+local base_menu = require("config.menu.base")
 local M = {}
 
 local function is_django_project()
@@ -119,32 +120,33 @@ local function run_create_superuser()
 end
 
 function M.open_menu()
-  -- Diccionario base de opciones del menú
-  local menu_items = {
-    {
-      name = "󰤑  Run Tests",
-      hl = "@conditional",
-      cmd = run_tests,
-      rtxt = "t",
-    },
-    {
-      name = "󰤑  Run Test File",
-      hl = "@conditional",
-      cmd = run_test_file,
-      rtxt = "f",
-    },
-    { name = "separator" },
-    {
-      name = "  Run Code",
-      cmd = run_code,
-      rtxt = "r",
-    },
-    {
-      name = "󱏛  Run Code (Debug)",
-      cmd = run_code_debug,
-      rtxt = "d",
-    },
-  }
+  -- Copia las opciones comunes del módulo base
+  local menu_items = vim.deepcopy(base_menu.common_options)
+
+  -- Agrega las opciones específicas de Python
+  table.insert(menu_items, {
+    name = "󰤑  Run Tests",
+    hl = "@conditional",
+    cmd = run_tests,
+    rtxt = "t",
+  })
+  table.insert(menu_items, {
+    name = "󰤑  Run Test File",
+    hl = "@conditional",
+    cmd = run_test_file,
+    rtxt = "f",
+  })
+  table.insert(menu_items, { name = "separator" })
+  table.insert(menu_items, {
+    name = "  Run Code",
+    cmd = run_code,
+    rtxt = "r",
+  })
+  table.insert(menu_items, {
+    name = "󱏛  Run Code (Debug)",
+    cmd = run_code_debug,
+    rtxt = "d",
+  })
 
   -- Agregar opciones específicas de Django si es un proyecto Django
   if is_django_project() then

@@ -45,3 +45,16 @@ vim.api.nvim_create_autocmd("FileType", {
     end
   end,
 })
+
+-- Menú por defecto (se usará cuando no haya un menú específico)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*", -- Aplica a todos los tipos de archivo
+  callback = function(event)
+    local menu = menus[event.match]
+    if not menu then
+      vim.keymap.set("n", "<C-m>", function()
+        require("config.menu.base").default_menu()
+      end, { buffer = true, desc = "Abrir menú por defecto" })
+    end
+  end,
+})

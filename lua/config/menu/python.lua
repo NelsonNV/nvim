@@ -62,7 +62,8 @@ local function run_tests()
 end
 
 local function run_test_file()
-  local current_file = vim.fn.expand("%") -- Obtiene la ruta del archivo actual
+  -- Obtiene la ruta del archivo actual desde la raíz del proyecto
+  local current_file = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
   local command
 
   if is_django_project() then
@@ -70,6 +71,9 @@ local function run_test_file()
     local module_path = current_file:gsub("/", ".") -- Reemplazar / con .
     module_path = module_path:gsub(".py$", "") -- Eliminar la extensión .py
     module_path = module_path:gsub("^%.+", "") -- Eliminar puntos iniciales (si los hay)
+
+    -- Permitir al usuario editar el module_path antes de ejecutar el comando
+    module_path = vim.fn.input("Edit module path: ", module_path)
 
     command = activate_venv() .. "python manage.py test " .. module_path
   else

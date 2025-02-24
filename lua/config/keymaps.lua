@@ -28,7 +28,8 @@ vim.api.nvim_set_keymap("v", "}", "{", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "[[", "]]", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "]]", "[[", { noremap = true, silent = true })
 
--- Selecionar Menu
+vim.api.nvim_set_keymap("v", "]]", "[[", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "[[", "]]", { noremap = true, silent = true })
 
 local menus = {
   python = "config.menu.python",

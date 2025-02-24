@@ -32,6 +32,7 @@ vim.api.nvim_set_keymap("n", "]]", "[[", { noremap = true, silent = true })
 
 local menus = {
   python = "config.menu.python",
+  gitignore = "config.menu.gitignore",
 }
 
 vim.api.nvim_create_autocmd("FileType", {

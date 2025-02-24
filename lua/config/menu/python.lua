@@ -38,7 +38,9 @@ local function open_terminal(command)
       title = "Python Terminal",
       title_pos = "center",
     },
-    close_on_exit = false,
+    auto_close = false,
+    auto_insert = false,
+    interactive = false,
   })
 end
 

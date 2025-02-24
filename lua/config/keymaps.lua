@@ -35,14 +35,16 @@ local menus = {
   gitignore = "config.menu.gitignore",
 }
 
+local keymapmenu = "<leader>tm"
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = vim.tbl_keys(menus),
   callback = function(event)
     local menu = menus[event.match]
     if menu then
-      vim.keymap.set("n", "<C-m>", function()
+      vim.keymap.set("n", keymapmenu, function()
         require(menu).open_menu()
-      end, { buffer = true, desc = "Abrir menú de " .. event.match })
+      end, { buffer = true, desc = "menu de " .. event.match })
     end
   end,
 })
@@ -53,9 +55,9 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function(event)
     local menu = menus[event.match]
     if not menu then
-      vim.keymap.set("n", "<C-m>", function()
+      vim.keymap.set("n", keymapmenu, function()
         require("config.menu.base").default_menu()
-      end, { buffer = true, desc = "Abrir menú por defecto" })
+      end, { buffer = true, desc = "menu por defecto" })
     end
   end,
 })

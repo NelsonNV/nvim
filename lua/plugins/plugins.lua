@@ -20,14 +20,4 @@ return {
     cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
     opts = { use_default_keymaps = false },
   },
-  {
-    "mg979/vim-visual-multi",
-    name = "vim-visual-multi",
-    lazy = true,
-    keys = {
-      { "<C-d>", desc = "multiple cursor select" },
-      { "<C-Up>", desc = "move cursor up (multi)" },
-      { "<C-Down>", desc = "move cursor down (multi)" },
-    },
-  },
 }

@@ -26,6 +26,7 @@ vim.api.nvim_set_keymap("v", "[[", "]]", { noremap = true, silent = true })
 local menus = {
   python = "config.menu.python",
   gitignore = "config.menu.gitignore",
+  go = "config.menu.go",
 }
 
 local keymapmenu = "<leader>tm"

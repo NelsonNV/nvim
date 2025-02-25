@@ -22,18 +22,18 @@ function M.default_menu()
 
   -- Agrega opciones adicionales para el menú por defecto
   table.insert(menu_items, {
-    name = "  Open File",
+    name = "󰘦  Toggle Tressitter join",
     cmd = function()
-      vim.cmd("Telescope find_files")
+      vim.cmd("TSJToggle")
     end,
-    rtxt = "f",
+    rtxt = "m",
   })
   table.insert(menu_items, {
-    name = "  Search Text",
+    name = " To-do",
     cmd = function()
-      vim.cmd("Telescope live_grep")
+      vim.cmd("Dooing")
     end,
-    rtxt = "s",
+    rtxt = "d",
   })
 
   -- Abrir el menú con las opciones

@@ -12,11 +12,6 @@ return {
   {
     "Wansmer/treesj",
     lazy = true,
-    keys = { {
-      "<leader>m",
-      "<CMD>TSJToggle<CR>",
-      desc = "Toggle Tressitter join",
-    } },
     cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
     opts = { use_default_keymaps = false },
   },

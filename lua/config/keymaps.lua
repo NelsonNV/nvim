@@ -29,7 +29,7 @@ local menus = {
   go = "config.menu.go",
 }
 
-local keymapmenu = "<leader>tm"
+local keymapmenu = "<leader>m"
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = vim.tbl_keys(menus),

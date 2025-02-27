@@ -6,6 +6,7 @@ return {
   opts = {
     -- add any opts here
     -- for example
+    ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | "deppseek" | string
     provider = "copilot",
 
     behaviour = {

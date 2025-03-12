@@ -27,6 +27,7 @@ local menus = {
   python = "config.menu.python",
   gitignore = "config.menu.gitignore",
   go = "config.menu.go",
+  rust = "config.menu.rust",
 }
 
 local keymapmenu = "<leader>m"

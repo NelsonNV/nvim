@@ -13,15 +13,10 @@ local function copy_file_to_clipboard()
     -- Convertir el contenido en una sola cadena
     local joined_content = table.concat(content, "\n")
 
-    -- Enviar el contenido al portapapeles usando xclip
-    local handle = io.popen("xclip -selection clipboard", "w")
-    if handle then
-      handle:write(joined_content)
-      handle:close()
-      print("Contenido copiado al portapapeles")
-    else
-      print("Error: No se pudo abrir xclip")
-    end
+    -- Usar el portapapeles de Neovim (registro `+` para el portapapeles del sistema)
+    vim.fn.setreg("+", joined_content)
+
+    print("Contenido Copiado")
   else
     print("Error: No se pudo leer el archivo")
   end

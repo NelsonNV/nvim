@@ -16,8 +16,13 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.php" },
     { import = "lazyvim.plugins.extras.lang.docker" },
     { import = "lazyvim.plugins.extras.lang.sql" },
+
+    -- mi prugins instalados
     { import = "plugins" },
     { import = "plugins.ui" },
+    { import = "plugins.core" },
+    { import = "plugins.utils" },
+    { import = "plugins.code" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.

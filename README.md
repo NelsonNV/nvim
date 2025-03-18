@@ -21,3 +21,26 @@ instalar [django-stubs](https://github.com/typeddjango/django-stubs) de esa mane
 ```bash
 pip install 'django-stubs[compatible-mypy]'
 ```
+
+# ajustes para javascript en formateo
+
+se tiene que instalar [biome](https://biomejs.dev) o prettier
+
+```bash
+npm install -g @biomejs/biome
+```
+
+y generar un archivo formateo
+
+
+```bash
+biome init
+```
+
+# Ajuste para rust
+
+se necesita instalar [**rust-analyzer**](https://rust-analyzer.github.io/)
+
+```bash
+pacman -S rust-analyzer
+```

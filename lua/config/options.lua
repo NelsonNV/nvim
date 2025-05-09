@@ -7,6 +7,7 @@ vim.o.relativenumber = true
 vim.o.mouse = "a"
 vim.o.encoding = "utf-8"
 vim.o.syntax = "on"
+vim.o.cursorline = true
 
 -- Wrap visual
 vim.o.wrap = true

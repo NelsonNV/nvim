@@ -6,7 +6,7 @@ return {
   opts = {
     -- add any opts here
     -- for example
-    ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | "deppseek" | string
+    ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | "deepseek" | string
     provider = "copilot",
 
     behaviour = {
@@ -16,7 +16,15 @@ return {
       auto_apply_diff_after_generation = false,
       support_paste_from_clipboard = false,
     },
-    --
+    -- ollama = {
+    --   -- __inherited_from = "openai",
+    --   -- api_key_name = "",
+    --   endpoint = "http://127.0.0.1:11434",
+    --   model = "qwen2.5-coder:3b",
+    --   -- max_tokens = 4096,
+    --   -- disable_tools = true,
+    -- },
+    -- --
     -- openai = {
     --   endpoint = "https://api.openai.com/v1",
     --   model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)

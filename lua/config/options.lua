@@ -25,12 +25,14 @@ vim.o.ruler = true
 vim.g.lazyvim_php_lsp = "intelephense"
 vim.g.lazyvim_python_lsp = "pyright"
 vim.g.lazyvim_python_ruff = "ruff"
+vim.g.lazyvim_rust_diagnostics = "rust-analyzer"
+
 local opts = vim.opt
 opts = {
   ensure_installed = {
+    "rust",
+    "ron",
     "ninja",
-    "rst",
-    "phpcs",
-    "php-cs-fixer",
+    "intelephense",
   },
 }

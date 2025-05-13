@@ -7,7 +7,7 @@ local function open_terminal(command)
       width = 0.6,
       height = 0.5,
       border = "rounded",
-      title = "Python Terminal",
+      title = "Rust Terminal",
       title_pos = "center",
     },
     auto_close = false,

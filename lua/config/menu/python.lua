@@ -9,16 +9,22 @@ end
 local function activate_venv()
   local venv_names = { ".venv", "venv", "env" }
 
+  -- Detectar el shell actual
+  local shell = vim.env.SHELL or ""
+  local shell_name = vim.fn.fnamemodify(shell, ":t")
+
+  -- Seleccionar el script adecuado según el shell
+  local activate_script = "bin/activate" -- por defecto, para bash/zsh
+  if shell_name == "fish" then
+    activate_script = "bin/activate.fish"
+  elseif shell_name == "csh" or shell_name == "tcsh" then
+    activate_script = "bin/activate.csh"
+  end
+
   for _, venv_name in ipairs(venv_names) do
     local venv_path = vim.fn.finddir(venv_name, ".;")
     if venv_path ~= "" then
-      local activate_script = "bin/activate"
-      if vim.fn.has("win32") == 1 then
-        activate_script = "Scripts\\activate"
-      end
-
       local full_path = vim.fn.fnamemodify(venv_path, ":p") .. activate_script
-
       if vim.fn.filereadable(full_path) == 1 then
         return "source " .. full_path .. " && "
       end

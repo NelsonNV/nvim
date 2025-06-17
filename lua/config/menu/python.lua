@@ -53,6 +53,12 @@ end
 local function stop_server()
   -- Busca un proceso de Python que esté ejecutando el servidor de Django
   local handle = io.popen("pgrep -f 'python manage.py runserver'")
+
+  if handle == nil then
+    print("Error: no se pudo ejecutar pgrep")
+    return
+  end
+
   local result = handle:read("*a")
   handle:close()
 

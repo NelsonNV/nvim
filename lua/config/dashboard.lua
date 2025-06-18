@@ -99,9 +99,11 @@ local function imagengaleria()
     filepath,
     width,
     height
-  )
+  ),
+    height
 end
 
+local imagen_cmd, imagen_height = imagengaleria()
 return {
   dashboard = {
     enabled = true,
@@ -192,8 +194,8 @@ return {
     sections = {
       {
         section = "terminal",
-        cmd = imagengaleria(),
-        height = 17,
+        cmd = imagen_cmd,
+        height = imagen_height or 20,
         padding = 1,
       },
       {

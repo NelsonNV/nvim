@@ -7,7 +7,6 @@ M.common_options = {
     name = "󰈚  Icon Search",
     cmd = function()
       vim.cmd("IconPickerInsert")
-      print("Searching icons...")
     end,
     rtxt = "i",
   },

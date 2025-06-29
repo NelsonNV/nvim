@@ -14,6 +14,7 @@ requerimientos
 - [powershell](https://apps.microsoft.com/detail/9mz1snwt0n5d?hl=en-us&gl=US)
 - [ripgrep](https://github.com/BurntSushi/ripgrep?tab=readme-ov-file#installation)
 - fzf
+- node (20v)
 
 # Ajustes para django
 

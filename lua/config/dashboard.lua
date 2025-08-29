@@ -1,106 +1,50 @@
 local function imagengaleria()
   local default_path = os.getenv("HOME") .. "/.nvimheader/"
-  local config_file = default_path .. "imagelist.txt"
-  local max_width = 60
-  local max_height = 20
-  local min_width = 20
-  local min_height = 10
 
+  -- Asegura que el directorio existe
   local function ensure_directory(path)
-    local ok = os.execute('mkdir -p "' .. path .. '"')
-    return ok
-  end
-
-  local function ensure_file(file)
-    local f = io.open(file, "r")
-    if not f then
-      f = io.open(file, "w")
-      if f then
-        f:close()
-      end
-    else
-      f:close()
-    end
+    os.execute('mkdir -p "' .. path .. '"')
   end
 
   ensure_directory(default_path)
-  ensure_file(config_file)
 
-  local function load_image_list(file)
+  -- Carga todos los archivos .txt del directorio
+  local function load_ascii_list()
     local list = {}
-    local f = io.open(file, "r")
-    if f then
-      for line in f:lines() do
-        if line:match("%.jpe?g$") or line:match("%.png$") or line:match("%.gif$") or line:match("%.webp$") then
-          table.insert(list, line)
+    local handle = io.popen('ls "' .. default_path .. '"')
+    if handle then
+      for file in handle:lines() do
+        if file:match("%.txt$") then
+          table.insert(list, default_path .. file)
         end
       end
-      f:close()
+      handle:close()
     end
     return list
   end
 
-  local function get_image_size(filepath)
-    local handle = io.popen('identify -format "%w %h" "' .. filepath .. '" 2>/dev/null')
-    if handle then
-      local output = handle:read("*a")
-      handle:close()
-      if output and output ~= "" then
-        local w, h = output:match("(%d+)%s+(%d+)")
-        return tonumber(w), tonumber(h)
-      end
-    end
-    return nil, nil
+  local files = load_ascii_list()
+  if #files == 0 then
+    return "echo 'No se encontraron archivos .txt con ASCII en " .. default_path .. "'", 10
   end
 
-  local images = load_image_list(config_file)
-  if #images == 0 then
-    local handle = io.popen('ls "' .. default_path .. '"')
-    if handle then
-      for file in handle:lines() do
-        if file:match("%.jpe?g$") or file:match("%.png$") or file:match("%.gif$") or file:match("%.webp$") then
-          table.insert(images, default_path .. file)
-        end
-      end
-      handle:close()
-    end
-  end
-
-  if #images == 0 then
-    return "No se encontraron imágenes en " .. default_path .. " ni en imagelist.txt"
-  end
-
+  -- Selecciona uno basado en la hora actual (para variedad)
   local time = os.date("*t")
-  local index = (time.hour + time.min + time.sec) % #images + 1
-  local filepath = images[index]
-  local filename = filepath:match("^.+/(.+)$") or filepath
+  local index = (time.hour + time.min + time.sec) % #files + 1
+  local filepath = files[index]
 
-  local preferred_w, preferred_h = filename:match("_(%d+)x(%d+)")
-  preferred_w = tonumber(preferred_w)
-  preferred_h = tonumber(preferred_h)
-
-  local iw, ih = get_image_size(filepath)
-  if not iw or not ih then
-    return "No se pudo obtener el tamaño de la imagen: " .. filename
+  -- Calcula la altura del archivo para el dashboard
+  local height = 20
+  local f = io.open(filepath, "r")
+  if f then
+    height = 0
+    for _ in f:lines() do
+      height = height + 1
+    end
+    f:close()
   end
 
-  local width, height
-  if preferred_w and preferred_h then
-    width = preferred_w
-    height = preferred_h
-  else
-    local scale = math.min(max_width / iw, max_height / ih, 1)
-    width = math.max(math.floor(iw * scale), min_width)
-    height = math.max(math.floor(ih * scale), min_height)
-  end
-
-  return string.format(
-    'chafa "%s" --format symbols --symbols vhalf --size %dx%d --stretch; sleep 0.1',
-    filepath,
-    width,
-    height
-  ),
-    height
+  return string.format('cat "%s"', filepath), height
 end
 
 local imagen_cmd, imagen_height = imagengaleria()
@@ -179,9 +123,10 @@ return {
           end,
         },
 
-        { icon = " ", key = "g", desc = "Buscar Texto", action = ":lua Snacks.dashboard.pick('live_grep')" },
+        { icon = " ", key = "f", desc = "Buscar Texto", action = ":lua Snacks.dashboard.pick('live_grep')" },
         { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-        { icon = "💤", key = "l", desc = "LazyGit", action = ":LazyGit" },
+        { icon = " ", key = "g", desc = "LazyGit", action = ":LazyGit" },
+        { icon = "💤", key = "l", desc = "Lazy", action = ":Lazy" },
         {
           icon = " ",
           key = "c",
